@@ -30,18 +30,6 @@
 #include <cm_backtrace.h>
 #include <string.h>
 
-#ifndef CMBACKTRACE_FIRMWARE_NAME
-#define CMBACKTRACE_FIRMWARE_NAME "rt-thread"
-#endif // !CMBACKTRACE_FIRMWARE_NAME
-
-#ifndef CMBACKTRACE_HARDWARE_VER
-#define CMBACKTRACE_HARDWARE_VER "1.0"
-#endif // !CMBACKTRACE_HARDWARE_VER
-
-#ifndef CMBACKTRACE_SOFTWARE_VER
-#define CMBACKTRACE_SOFTWARE_VER "1.0"
-#endif // !CMBACKTRACE_SOFTWARE_VER
-
 #if defined(__CC_ARM)
     #pragma O1
 #elif defined(__CLANG_ARM)
@@ -294,8 +282,8 @@ int rt_cm_backtrace_init(void) {
         return 0;
     }
 
-    cm_backtrace_init(CMBACKTRACE_FIRMWARE_NAME, CMBACKTRACE_HARDWARE_VER, CMBACKTRACE_SOFTWARE_VER);
-
+    cm_backtrace_init("rt-thread","1.0","1.0");
+    
     rt_hw_exception_install(exception_hook);
 
     rt_assert_set_hook(assert_hook);
